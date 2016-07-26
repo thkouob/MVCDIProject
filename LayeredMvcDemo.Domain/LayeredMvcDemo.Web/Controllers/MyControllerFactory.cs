@@ -13,7 +13,7 @@ namespace LayeredMvcDemo.Web
     {
         public override IController CreateController(RequestContext requestContext, string controllerName)
         {
-            if (string.Equals(controllerName, "customer", StringComparison.OrdinalIgnoreCase)) 
+            if (string.Equals(controllerName, "customer", StringComparison.OrdinalIgnoreCase))
             {
                 //建立相依物件並注入至新建立的controllers
                 var repository = new CustomerRepository();
@@ -21,12 +21,21 @@ namespace LayeredMvcDemo.Web
                 var controller = new CustomerController(service);
                 return controller;
             }
+            else if (string.Equals(controllerName, "order", StringComparison.OrdinalIgnoreCase))
+            {
+                var orderRepo = new OrderRepository();
+                var customerRepo = new CustomerRepository();
+
+                var orderService = new OrderService(orderRepo, customerRepo);
+                var controller = new OrderController(orderService);
+                return controller;
+            }
 
             // 其他不需要特殊處理的controller型別就使用MVC內建的工廠來建立
             return base.CreateController(requestContext, controllerName);
         }
 
-        public void ReleaseController(IController controller)
+        public override void ReleaseController(IController controller)
         {
             // 需要釋放其他物件資源寫在這裡
             base.ReleaseController(controller);
