@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\MyControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +140,10 @@
     <ProjectReference Include="..\LayeredMvcDemo.Application\LayeredMvcDemo.Application.csproj">
       <Project>{7ea03154-b765-49cb-825b-7cdc332a6ff6}</Project>
       <Name>LayeredMvcDemo.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LayeredMvcDemo.DataAccess\LayeredMvcDemo.DataAccess.csproj">
+      <Project>{f8a2d0ec-621c-4582-9282-83d53b10de23}</Project>
+      <Name>LayeredMvcDemo.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\LayeredMvcDemo.Domain\LayeredMvcDemo.Domain.csproj">
       <Project>{67a7f86c-3910-41f9-994c-faef5c76d863}</Project>

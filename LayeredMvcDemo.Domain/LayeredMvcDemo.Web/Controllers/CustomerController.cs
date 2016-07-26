@@ -9,7 +9,12 @@ namespace LayeredMvcDemo.Web
 {
     public class CustomerController : Controller
     {
-        private CustomerService customerService = new CustomerService();
+        //private CustomerService customerService = new CustomerService();
+        private readonly ICustomerService customerService; //change to use interface
+        public CustomerController(ICustomerService service)
+        {
+            this.customerService = service;
+        }
         // GET: Customer
         public ActionResult Index()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LayeredMvcDemo.DataAccess
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private SouthwindContext db = new SouthwindContext();
 
