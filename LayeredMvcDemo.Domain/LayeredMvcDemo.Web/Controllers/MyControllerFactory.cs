@@ -16,17 +16,17 @@ namespace LayeredMvcDemo.Web
             if (string.Equals(controllerName, "customer", StringComparison.OrdinalIgnoreCase))
             {
                 //建立相依物件並注入至新建立的controllers
-                var repository = new CustomerRepository();
-                var service = new CustomerService(repository);
+                //var repository = new CustomerRepository();
+                var service = new CustomerService();
                 var controller = new CustomerController(service);
                 return controller;
             }
             else if (string.Equals(controllerName, "order", StringComparison.OrdinalIgnoreCase))
             {
-                var orderRepo = new OrderRepository();
-                var customerRepo = new CustomerRepository();
+                //var orderRepo = new OrderRepository();
+                //var customerRepo = new CustomerRepository();
 
-                var orderService = new OrderService(orderRepo, customerRepo);
+                var orderService = new OrderService();
                 var controller = new OrderController(orderService);
                 return controller;
             }
