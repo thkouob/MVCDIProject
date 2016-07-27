@@ -16,9 +16,12 @@ namespace LayeredMvcDemo.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             //把MVC框架的預設controller factory換掉
-            var ctrlFactory = new MyControllerFactory();
+           // var ctrlFactory = new MyControllerFactory();
             //SetControllerFactory 方法就是屬性注入（Property Injection)
-            ControllerBuilder.Current.SetControllerFactory(ctrlFactory);
+            //ControllerBuilder.Current.SetControllerFactory(ctrlFactory);
+
+            var myResolver = new MyDependencyResolver();
+            DependencyResolver.SetResolver(myResolver);
         }
 
         protected void Application_BeginRequest() 
