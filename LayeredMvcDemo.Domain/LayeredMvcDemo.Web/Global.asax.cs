@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LayeredMvcDemo.DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,20 @@ namespace LayeredMvcDemo.Web
             var ctrlFactory = new MyControllerFactory();
             //SetControllerFactory 方法就是屬性注入（Property Injection)
             ControllerBuilder.Current.SetControllerFactory(ctrlFactory);
+        }
+
+        protected void Application_BeginRequest() 
+        {
+            HttpContext.Current.Items["DbContext"] = new SouthwindContext();
+        }
+
+        protected void Application_EndRequest() 
+        {
+            var db = HttpContext.Current.Items["DbContext"] as SouthwindContext;
+            if (db != null) 
+            {
+                db.Dispose();
+            }
         }
     }
 }

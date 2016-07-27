@@ -1,15 +1,21 @@
 ﻿using LayeredMvcDemo.Domain;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace LayeredMvcDemo.DataAccess
 {
     public class SouthwindContext : DbContext
     {
+        public static SouthwindContext InstanceInCurrentRequest 
+        {
+            get 
+            {
+                return HttpContext.Current.Items["DbContext"] as SouthwindContext;
+            }
+        }
+
         public SouthwindContext()
             : base("SouthwindDB")
         {

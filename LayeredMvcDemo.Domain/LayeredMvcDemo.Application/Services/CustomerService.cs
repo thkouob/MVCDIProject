@@ -17,14 +17,14 @@ namespace LayeredMvcDemo.Application
         private readonly SouthwindContext db;
         public CustomerService()
         {
-            // 提供預設的DbContext 物件。
-            db = new SouthwindContext();
+            // 提供預設的DbContext物件。
+            db = SouthwindContext.InstanceInCurrentRequest;
         }
 
         public CustomerService(SouthwindContext dbContext)
         {
            // this.repository = repo; ------v2
-            // 呼叫端有注入DbContext 物件，就用對方提供的。
+            // 呼叫端有注入DbContext物件，就用對方提供的。
             this.db = dbContext;
         }
 
